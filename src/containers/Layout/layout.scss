@@ -1,0 +1,8 @@
+.layout {
+    display: grid;
+    grid-template-areas: "MYHEADER" "MYCONTENT";
+
+    .layout_body {
+        grid-area: MYCONTENT;
+    }
+}

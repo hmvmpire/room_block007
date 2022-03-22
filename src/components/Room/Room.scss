@@ -1,25 +1,28 @@
 .workRoom {
-  margin: 15rem;
+  margin: 20rem;
 
   display: grid;
-  grid-gap: 10rem;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 35rem 35rem;
+  grid-gap: 8rem;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: 45rem 35rem;
 
-  .firstPlace {
+  
+ 
+}
+.firstPlace {
     background-color: red;
     
 
   }
-  .secondPlace {
-    background-color: blueviolet;
-  }
 
-  .thirdPlace {
-    background-color: blue;
-  }
+.secondPlace {
+  background-color: blueviolet;
+}
 
-  .fourthPlace {
-    background-color: orange;
-  }
+.thirdPlace {
+  background-color: blue;
+}
+
+.fourthPlace {
+  background-color: orange;
 }

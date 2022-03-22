@@ -12,6 +12,8 @@ const AppRouter = () => {
         <Route path='/' element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path='booking' element={<BookingPage />} />
+          <Route path='booking/:roomId' element={<BookingPage />} />
+          
         </Route>
       </Routes>
     </BrowserRouter>

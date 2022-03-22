@@ -1,6 +1,7 @@
 import React from 'react';
 import Room from '../../../components/Room/Room.js';
-const Booking = () => {
+const Booking = (props) => {
+
   return (
     <>
       <Room />

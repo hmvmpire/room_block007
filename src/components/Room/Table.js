@@ -1,21 +1,36 @@
-import React from 'react';
+import React from "react";
+import "./Table.scss";
+import "./RoomsData.js";
+import RoomsData from "./RoomsData.js";
 
-const Table = () => {
-  return (
-    <div className='tableOne'>
-      <button className='buttonOne'>
-        <img src='../../assets/svgs/free.svg' alt='SVG'></img>
-      </button>
+import Grid from "@mui/material/Grid";
 
-      <button className='buttonTwo'>
-        <img src='../../assets/svgs/free.svg' alt='SVG'></img>
-      </button>
+const Table = (props) => {
+  const columns = props.data.column;
 
-      <div className='number'>
-        <p>1</p>
-      </div>
-    </div>
-  );
+  const getColumns = () => {
+    let cols = [];
+    for (let i = 0; i < columns; i++) {
+      cols.push(
+        <Grid
+          columns={12}
+          direction="row"
+          gap={2}
+          justifyContent="space-around"
+          alignItems="center"
+          style={{
+            width: "280px",
+            background: "yellow",
+            height: "fit-content",
+          }}
+          container>
+          <RoomsData data={props.data.tableData[i]} />
+        </Grid>
+      );
+    }
+    return cols;
+  };
+  return <div className="tableOne">{getColumns()}</div>;
 };
 
 export default Table;

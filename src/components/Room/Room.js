@@ -1,85 +1,244 @@
-import React from 'react';
-import Table from './Table.js';
+import React from "react";
+import Table from "./Table.js";
+import { useParams } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import { useNavigate } from "react-router-dom";
+import { Settings } from '@mui/icons-material';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
-const Room = () => {
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 1000,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
+const Room = (props) => {
+  let navigate = useNavigate();
+  const params = useParams()
+  const roomId=params.roomId?params.roomId:0
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  let x = [
+    {
+      room: "One",
+      tables: {
+        column: 2,
+        tableData: [
+          [
+            { name: "BJR",position:'horizontal' },
+            { name: "BKR",position:'vertical' },
+            { name: "VJR",position:'vertical' },
+            { name: "FJR",position:'vertical' },
+            { name: "BLR",position:'vertical' },
+            { name: "EER",position:'vertical' },
+            { name: "GJR",position:'vertical' },
+           
+          ],
+          [
+            { name: "GJR",position:'vertical' },
+            { name: "GJR",position:'vertical' },
+            { name: "BJR",position:'vertical' },
+            { name: "BKR",position:'vertical' },
+            { name: "VJR",position:'vertical' },
+            { name: "FJR",position:'vertical' },
+            { name: "BLR",position:'vertical' },
+         
+            { name: "FJR",position:'vertical' },
+            { name: "BLR",position:'vertical' },
+            { name: "EER",position:'vertical' },
+          
+          
+           
+           
+          ],
+        ],
+      },
+    },
+    {
+      room: "One",
+      tables: {
+        column: 2,
+        tableData: [
+          [
+           
+            { name: "FJR",position:'vertical' },
+            { name: "BLR",position:'vertical' },
+            { name: "EER",position:'vertical' },
+            { name: "GJR",position:'vertical' },
+           
+          ],
+          [
+            { name: "GJR",position:'vertical' },
+            { name: "GJR",position:'vertical' },
+            { name: "BJR",position:'vertical' },
+            { name: "BKR",position:'vertical' },
+      
+          
+          
+           
+           
+          ],
+        ],
+      },
+    },
+    {
+      room: "One",
+      tables: {
+        column: 1,
+        tableData: [
+          [
+           
+            { name: "FJR",position:'vertical' },
+            { name: "BLR",position:'vertical' },
+            { name: "EER",position:'vertical' },
+            { name: "GJR",position:'vertical' },
+           
+          ],
+          
+        ],
+      },
+    },
+
+    {
+      room: "One",
+      tables: {
+        column: 2,
+        tableData: [
+          [
+           
+            { name: "FJR",position:'vertical' },
+            { name: "BLR",position:'vertical' },
+            { name: "EER",position:'vertical' },
+            { name: "GJR",position:'vertical' },
+            { name: "BLR",position:'vertical' },
+            { name: "EER",position:'vertical' },
+        
+           
+          ],
+          [
+           
+            { name: "FJR",position:'vertical' },
+            { name: "BLR",position:'vertical' },
+            { name: "EER",position:'vertical' },
+            { name: "GJR",position:'vertical' },
+           
+           
+          ],
+          
+        ],
+      },
+    },
+  ];
   return (
     <>
-      <div className='workRoom'>
-        <div className='firstPlace'>
-          <div className='firstPlace__first'>
-            <Table />
-          </div>
-          <div className='firstPlace__first'>
-            <Table />
-          </div>
-          <div className='firstPlace__first'>
-            <Table />
-          </div>
-          <div className='firstPlace__first'>
-            <Table />
-          </div>
-          <div className='firstPlace__first'>
-            <Table />
-          </div>
-          <div className='firstPlace__first'>
-            <Table />
-          </div>
+      <div className="workRoom">
+        <div className="firstPlace">
+          <Grid container column={12} spacing={2}>
+            <Grid item xs={10}>
+              <Table data={x[roomId].tables} />
+            </Grid>
+            <Grid item xs={2}>
+              <Item>
+                <Settings onClick={handleOpen} />
+              </Item>
+              <Calendar />
+            </Grid>
+          </Grid>
         </div>
 
-        <div className='secondPlace'>
-          <div className='secondPlace__second'>
-            <button></button>
-          </div>
-          <div className='secondPlace__third'>
-            <button></button>
-          </div>
-          <div className='secondPlace__fourth'>
-            <button></button>
-          </div>
-          <div className='secondPlace__fifth'>
-            <button></button>
-          </div>
-          <div className='secondPlace__sixt'>
-            <button></button>
-          </div>
-        </div>
-        <div className='thirdPlace'>
-          <div className='thirdPlace__second'>
-            <button></button>
-          </div>
-          <div className='thirdPlace__third'>
-            <button></button>
-          </div>
-          <div className='thirdPlace__fourth'>
-            <button></button>
-          </div>
-          <div className='thirdPlace__fifth'>
-            <button></button>
-          </div>
-          <div className='thirdPlace__sixt'>
-            <button></button>
-          </div>
-        </div>
-        <div className='fourthPlace'>
-          <div className='fourthPlace__second'>
-            <button></button>
-          </div>
-          <div className='fourthPlace__third'>
-            <button></button>
-          </div>
-          <div className='fourthPlace__fourth'>
-            <button></button>
-          </div>
-          <div className='fourthPlace__fifth'>
-            <button></button>
-          </div>
-          <div className='fourthPlace__sixt'>
-            <button></button>
-          </div>
-        </div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description">
+          <Box sx={style}>
+            <Grid container column={12} spacing={2}>
+              <Grid item xs={8}>
+                <Item>
+                  <img
+                    style={{ width: "100%" }}
+                    alt="ok"
+                    src={require("./../../assets/building.jpg")}
+                  />
+                </Item>
+              </Grid>
+              <Grid item xs={4}>
+                <Item>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      {" "}
+                      <Button
+                        onClick={() => {
+                          navigate("/booking/0");
+                          setOpen(false);
+                        }}>
+                        Room No 1
+                      </Button>
+                    </Grid>
+                    <Grid item xs={12}>
+                      {" "}
+                      <Button
+                        onClick={() => {
+                          navigate("/booking/1");
+                          setOpen(false);
+                        }}>
+                        Room No 2
+                      </Button>
+                    </Grid>
+                    <Grid item xs={12}>
+                      {" "}
+                      <Button
+                        onClick={() => {
+                          navigate("/booking/2");
+                          setOpen(false);
+                        }}>
+                        Room No 3
+                      </Button>
+                    </Grid>
+                    <Grid item xs={12}>
+                      {" "}
+                      <Button
+                        onClick={() => {
+                          navigate("/booking/3");
+                          setOpen(false);
+                        }}>
+                        Room No 4
+                      </Button>
+                    </Grid>
+                  </Grid>
+                </Item>
+              </Grid>
+            </Grid>
+          </Box>
+        </Modal>
       </div>
     </>
   );
 };
 
 export default Room;
+
+
+
+// <img  alt="ok" src={require('./../../assets/building.jpg')} />

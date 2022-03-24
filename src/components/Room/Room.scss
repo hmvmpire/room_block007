@@ -1,11 +1,12 @@
 .workRoom {
-  margin: 20rem;
+  margin: 10rem;
 
   display: grid;
   grid-gap: 8rem;
   grid-template-columns: repeat(1, 1fr);
   grid-template-rows: 45rem 35rem;
-
+  justify-content: center;
+  align-items: center;
   
  
 }
@@ -25,4 +26,13 @@
 
 .fourthPlace {
   background-color: orange;
+}
+
+.fullWidth{
+   width: "100%" 
+}
+
+.whitBack{
+  background-color: white;
+  text-align: center;
 }

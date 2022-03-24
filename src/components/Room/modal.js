@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
+import './Room.scss'
 
 const style = {
     position: 'absolute',
@@ -49,7 +50,7 @@ const ModalPopUp=(props)=>{
             <Grid item xs={8}>
               <Item>
                 <img
-                  style={{ width: "100%" }}
+                  className="fullWidth"
                   alt="ok"
                   src={require("./../../assets/building.jpg")}
                 />

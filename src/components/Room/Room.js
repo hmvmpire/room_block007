@@ -3,8 +3,6 @@ import Table from "./Table.js";
 import { useParams } from "react-router-dom";
 
 import Grid from "@mui/material/Grid";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
 
 import { Settings } from "@mui/icons-material";
 import Calendar from "react-calendar";
@@ -16,23 +14,18 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import DateRangePicker from "@mui/lab/DateRangePicker";
 import Box from "@mui/material/Box";
+import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+
 
 const Room = (props) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const params = useParams();
   const roomId = params.roomId ? params.roomId : 0;
-
+  const [series, setSeries] = React.useState(false);
   const [value, setValue] = React.useState([null, null]);
-
+ 
   let x = [
     {
       room: "One",
@@ -40,97 +33,117 @@ const Room = (props) => {
         column: 2,
         tableData: [
           [
-            { name: "BJR", position: "horizontal",reserve:true },
-            { name: "BKR", position: "vertical",reserve:false },
-            { name: "VJR", position: "vertical",reserve:true },
-            { name: "FJR", position: "vertical",reserve:false },
-            { name: "BLR", position: "vertical",reserve:false },
-            { name: "EER", position: "vertical",reserve:true },
-            { name: "GJR", position: "vertical",reserve:false },
+            { name: "BJR", position: "horizontal", reserve: true },
+            { name: "BKR", position: "vertical", reserve: false },
+            { name: "VJw", position: "vertical", reserve: true },
+            { name: "FOR", position: "vertical", reserve: false },
+            { name: "BLM", position: "vertical", reserve: false },
+            { name: "PER", position: "vertical", reserve: true },
+            { name: "GtR", position: "vertical", reserve: false },
           ],
           [
-            { name: "GJR", position: "vertical",reserve:false },
-            { name: "GJR", position: "vertical",reserve:true },
-            { name: "BJR", position: "vertical",reserve:false },
-            { name: "BKR", position: "vertical",reserve:false },
-            { name: "VJR", position: "vertical",reserve:true },
-            { name: "FJR", position: "vertical",reserve:false },
-            { name: "BLR", position: "vertical",reserve:false },
-            { name: "FJR", position: "vertical",reserve:false },
-            { name: "BLR", position: "vertical",reserve:false },
-            { name: "EER", position: "vertical",reserve:true },
+            { name: "GJR", position: "vertical", reserve: false },
+            { name: "GwR", position: "vertical", reserve: true },
+            { name: "BeR", position: "vertical", reserve: false },
+            { name: "KKR", position: "vertical", reserve: false },
+            { name: "VJR", position: "vertical", reserve: true },
+            { name: "FJR", position: "vertical", reserve: false },
+            { name: "BPR", position: "vertical", reserve: false },
+            { name: "FHR", position: "vertical", reserve: false },
+            { name: "BLR", position: "vertical", reserve: false },
+            { name: "EER", position: "vertical", reserve: true },
           ],
         ],
       },
     },
     {
-      room: "One",
+      room: "two",
       tables: {
         column: 2,
         tableData: [
           [
-            { name: "FJR", position: "vertical",reserve:false },
-            { name: "BLR", position: "vertical",reserve:true },
-            { name: "EER", position: "vertical",reserve:false },
-            { name: "GJR", position: "vertical",reserve:false },
+            { name: "FJR", position: "vertical", reserve: false },
+            { name: "BLR", position: "vertical", reserve: true },
+            { name: "EER", position: "vertical", reserve: false },
+            { name: "GJR", position: "vertical", reserve: false },
           ],
           [
-            { name: "GJR", position: "vertical",reserve:false },
-            { name: "GJR", position: "vertical",reserve:true },
-            { name: "BJR", position: "vertical",reserve:false },
-            { name: "BKR", position: "vertical",reserve:true },
+            { name: "GJR", position: "vertical", reserve: false },
+            { name: "GJR", position: "vertical", reserve: true },
+            { name: "BJR", position: "vertical", reserve: false },
+            { name: "BKR", position: "vertical", reserve: true },
           ],
         ],
       },
     },
     {
-      room: "One",
+      room: "three",
       tables: {
         column: 1,
         tableData: [
           [
-            { name: "FJR", position: "vertical",reserve:true },
-            { name: "BLR", position: "vertical",reserve:false },
-            { name: "EER", position: "vertical",reserve:false },
-            { name: "GJR", position: "vertical",reserve:true },
+            { name: "FJR", position: "vertical", reserve: true },
+            { name: "BLR", position: "vertical", reserve: false },
+            { name: "EER", position: "vertical", reserve: false },
+            { name: "GJR", position: "vertical", reserve: true },
           ],
         ],
       },
     },
 
     {
-      room: "One",
+      room: "Four",
       tables: {
         column: 2,
         tableData: [
           [
-            { name: "FJR", position: "vertical",reserve:false },
-            { name: "BLR", position: "vertical",reserve:false },
-            { name: "EER", position: "vertical",reserve:true },
-            { name: "GJR", position: "vertical",reserve:false },
-            { name: "BLR", position: "vertical",reserve:false },
-            { name: "EER", position: "vertical",reserve:false },
+            { name: "FJR", position: "vertical", reserve: false },
+            { name: "BLR", position: "vertical", reserve: false },
+            { name: "EER", position: "vertical", reserve: true },
+            { name: "GJR", position: "vertical", reserve: false },
+            { name: "BLR", position: "vertical", reserve: false },
+            { name: "EER", position: "vertical", reserve: false },
           ],
           [
-            { name: "FJR", position: "vertical",reserve:false },
-            { name: "BLR", position: "vertical",reserve:true },
-            { name: "EER", position: "vertical",reserve:false },
-            { name: "GJR", position: "vertical",reserve:true },
+            { name: "FJR", position: "vertical", reserve: false },
+            { name: "BLR", position: "vertical", reserve: true },
+            { name: "EER", position: "vertical", reserve: false },
+            { name: "GJR", position: "vertical", reserve: true },
           ],
         ],
       },
     },
   ];
+  const [rooms,setRooms]=React.useState(x);
+  const changeReservation=(roomName ,tableName)=>{
+   
+    rooms.forEach((data,index)=>{
+      if(data.room===roomName){
+        data.tables.tableData.forEach((tableArr,TableIndex)=>{
+          tableArr.forEach((table,tableNoIndex)=>{
+            if(table.name===tableName){
+              
+              rooms[index].tables.tableData[TableIndex][tableNoIndex].reserve=!rooms[index].tables.tableData[TableIndex][tableNoIndex].reserve;
+              console.log(rooms);  
+              let arr=[...rooms]
+              setRooms(arr);
+              
+            }
+          })
+        })
+      }
+    })
+  }
   return (
     <>
       <div className="workRoom">
         <div className="firstPlace">
           <Grid container column={12} spacing={2}>
             <Grid item xs={8}>
-              <Table data={x[roomId].tables} />
+              <Table changeReserve={(roomName,tableName)=>{changeReservation(roomName,tableName)}} data={rooms[roomId]} />
             </Grid>
             <Grid item xs={4}>
-              <Item>
+              <div className="whitBack">
                 <Grid
                   justifyContent={"center"}
                   alignItems={"center"}
@@ -178,32 +191,50 @@ const Room = (props) => {
                   </Grid>
 
                   <Grid item xs={12}>
-                    <Grid
-                      justifyContent={"center"}
-                      alignItems={"center"}
-                      container
-                      column={12}
-                      spacing={2}>
-                      <Grid item xs={10}>
+                    {series === true ? (
+                      <Grid
+                        justifyContent={"center"}
+                        alignItems={"center"}
+                        container
+                        column={12}
+                        spacing={2}>
+                        <Grid item xs={10}>
+                          <LocalizationProvider dateAdapter={AdapterDateFns}>
+                            <DateRangePicker
+                              startText="Check-in"
+                              endText="Check-out"
+                              value={value}
+                              onChange={(newValue) => {
+                                setValue(newValue);
+                              }}
+                              renderInput={(startProps, endProps) => (
+                                <React.Fragment>
+                                  <TextField {...startProps} />
+                                  <Box sx={{ mx: 2 }}> to </Box>
+                                  <TextField {...endProps} />
+                                </React.Fragment>
+                              )}
+                            />
+                          </LocalizationProvider>
+                        </Grid>
+                      </Grid>
+                    ) : (
+                      <Grid
+                        justifyContent={"center"}
+                        alignItems={"center"}
+                        container
+                        column={12}
+                        spacing={2}>
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
-                          <DateRangePicker
-                            startText="Check-in"
-                            endText="Check-out"
+                          <DesktopDatePicker
+                            label="Date "
+                            inputFormat="MM/dd/yyyy"
                             value={value}
-                            onChange={(newValue) => {
-                              setValue(newValue);
-                            }}
-                            renderInput={(startProps, endProps) => (
-                              <React.Fragment>
-                                <TextField {...startProps} />
-                                <Box sx={{ mx: 2 }}> to </Box>
-                                <TextField {...endProps} />
-                              </React.Fragment>
-                            )}
+                            renderInput={(params) => <TextField {...params} />}
                           />
                         </LocalizationProvider>
                       </Grid>
-                    </Grid>
+                    )}
                   </Grid>
 
                   <Grid item xs={12}>
@@ -213,7 +244,10 @@ const Room = (props) => {
                       container
                       column={12}>
                       <Grid item xs={11}>
-                        <Button size="large" variant="outlined">
+                        <Button
+                          onClick={() => setSeries(!series)}
+                          size="large"
+                          variant="outlined">
                           Series{" "}
                         </Button>
                       </Grid>
@@ -289,7 +323,7 @@ const Room = (props) => {
                     </Grid>
                   </Grid>
                 </Grid>
-              </Item>
+              </div>
             </Grid>
           </Grid>
         </div>

@@ -1,32 +1,21 @@
 import React from "react";
 import "./Table.scss";
-import "./RoomsData.scss";
+import "./tableData.scss";
 import Grid from "@mui/material/Grid";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
 import Divider from "@mui/material/Divider";
 
-const RoomsData = (props) => {
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: getBackground(),
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
-  const getBackground = () => {
-    return "#" + Math.floor(Math.random() * 9469515).toString(16);
-  };
+const TableData = (props) => {
+  
   const { data } = props;
-  console.log(data);
+
   const getRooms = () => {
     let x = [];
     for (let i = 0; i < props.data.length; i++) {
       x.push(
-        <Grid item xs={data[i].position === "horizontal" ? 10 : 5}>
-          <Item className={`${data[i].position}`}>
+        <Grid onClick={()=>{props.changeReserve(props.roomName,props.data[i].name)}} item xs={data[i].position === "horizontal" ? 10 : 5}>
+          <div className={`${data[i].position}`}>
             {data[i].position === "horizontal" ? (
-              <Grid container columns={12} columnSpacing={3}>
+              <Grid container justifyContent={'center'} columns={12}>
                 {data[i].reserve === false ? (
                   <>
                     <Grid item xs={5}>
@@ -42,6 +31,9 @@ const RoomsData = (props) => {
                     <Grid item xs={5}>
                       {"Free"}
                     </Grid>
+                    <Grid item xs={12}>
+                      {props.data.roomName}
+                  </Grid>
                   </>
                 ) : (
                   <>
@@ -49,11 +41,18 @@ const RoomsData = (props) => {
                       {" "}
                       {data[i].name}
                     </Grid>
+                    <Grid item xs={12}>
+                      {props.data.roomName}
+                  </Grid>
                   </>
                 )}
+                <Grid style={{height:'10px'}} item xs={12}>
+                <div className="roomName">{props.roomName}</div>
+                 </Grid>
               </Grid>
             ) : (
-              <Grid container columns={12} rowSpacing={3}>
+             
+              <Grid container justifyContent={'space-between'} gap={1} alignItems={'space-between'} columns={12} >
                 {data[i].reserve === false ? (
                   <>
                     <Grid item xs={12}>
@@ -65,22 +64,34 @@ const RoomsData = (props) => {
                     <Grid item xs={12}>
                       {'Free'}
                     </Grid>
+                    
                   </>
                 ) : (
+                  <>
                   <Grid item xs={12}>
                     {data[i].name}
                   </Grid>
+                  
+              </>
+                  
                 )}
+                <>
+                 <Grid  item xs={12}>
+                 <div className="roomName">{props.roomName}</div>
+                 </Grid>
+                </> 
               </Grid>
+              
+              
             )}
-          </Item>
+          </div>
         </Grid>
       );
     }
     return x;
   };
   // console.log(props.data)
-  return <>{getRooms()} </>;
+  return <>{getRooms(props.data)} </>;
 };
 
-export default RoomsData;
+export default TableData;

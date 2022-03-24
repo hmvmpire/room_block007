@@ -1,12 +1,14 @@
 import React from "react";
 import "./Table.scss";
-import "./RoomsData.js";
-import RoomsData from "./RoomsData.js";
+import "./TableData.js";
+import TableData from "./TableData.js";
 
 import Grid from "@mui/material/Grid";
 
 const Table = (props) => {
-  const columns = props.data.column;
+  console.log('hello')
+  const columns = props.data.tables.column;
+
 
   const getColumns = () => {
     let cols = [];
@@ -18,19 +20,15 @@ const Table = (props) => {
           gap={2}
           justifyContent="space-around"
           alignItems="center"
-          style={{
-            width: "280px",
-            background: "yellow",
-            height: "fit-content",
-          }}
+          className="col-tab"
           container>
-          <RoomsData data={props.data.tableData[i]} />
+          <TableData changeReserve={props.changeReserve} roomName={props.data.room} data={props.data.tables.tableData[i]} />
         </Grid>
       );
     }
     return cols;
   };
-  return <div className="tableOne">{getColumns()}</div>;
+  return <div className="tableOne">{getColumns(props.data)}</div>;
 };
 
 export default Table;
